@@ -1,15 +1,16 @@
-PRODUCT_DEVICE := raphael
-PRODUCT_NAME := lineage_raphael
-PRODUCT_BRAND := Xiaomi
-PRODUCT_MODEL := Redmi K20 Pro
-PRODUCT_MANUFACTURER := Xiaomi
-
-# Inherit from the common LineageOS configuration
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
-
-# Inherit from the device-specific configuration
+# Inherit device configuration
 $(call inherit-product, device/xiaomi/raphael/device.mk)
 
-# Include kernel config
-$(call inherit-product, device/xiaomi/raphael/kernel.mk)
+# Inherit common Lineage stuff
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+
+# Product details
+PRODUCT_NAME := lineage_raphael
+PRODUCT_DEVICE := raphael
+PRODUCT_BRAND := Xiaomi
+PRODUCT_MANUFACTURER := Xiaomi
+PRODUCT_MODEL := Redmi K20 Pro
+
+# Characteristics
+PRODUCT_CHARACTERISTICS := nosdcard
 
