@@ -4,8 +4,12 @@ PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := Redmi K20 Pro
 PRODUCT_MANUFACTURER := Xiaomi
 
-PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
+# Inherit from the common LineageOS configuration
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+# Inherit from the device-specific configuration
 $(call inherit-product, device/xiaomi/raphael/device.mk)
+
+# Include kernel config
+$(call inherit-product, device/xiaomi/raphael/kernel.mk)
 
