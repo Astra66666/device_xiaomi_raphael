@@ -1,15 +1,16 @@
-# Inherit common board flags
-include build/make/target/board/BoardConfigCommon.mk
-
-# Platform
-TARGET_BOARD_PLATFORM := msmnile
-TARGET_BOARD_PLATFORM_GPU := qcom-adreno640
-
-# CPU architecture
+# Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-2a
 TARGET_CPU_VARIANT := kryo300
 TARGET_CPU_VARIANT_RUNTIME := kryo300
+
+TARGET_2ND_ARCH := arm
+TARGET_2ND_ARCH_VARIANT := armv8-2a
+TARGET_2ND_CPU_VARIANT := kryo300
+
+# Platform
+TARGET_BOARD_PLATFORM := sm8150
+BOARD_USES_QCOM_HARDWARE := true
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := raphael
@@ -38,21 +39,35 @@ BOARD_VENDORIMAGE_PARTITION_SIZE := 2147483648
 
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
 BOARD_USES_RECOVERY_AS_BOOT := false
+BOARD_BUILD_VENDOR_BOOT_IMAGE := true
 
-# File system
+# Metadata / AVB (optional: enable later)
+BOARD_USES_METADATA_PARTITION := true
+BOARD_AVB_ENABLE := false
+
+# File systems
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # Dynamic partitioning
 BOARD_SUPER_PARTITION_SIZE := 9126805504
 BOARD_SUPER_PARTITION_GROUPS := raphael_dynpart
-BOARD_RAPHAEL_DYNPART_SIZE := 9126805504
+BOARD_RAPHAEL_DYN_PARTITIONS_SIZE := 9122611200
 BOARD_RAPHAEL_DYNPART_PARTITION_LIST := system vendor product
 
-# A/B OTA (optional, disable if unsupported)
+# A/B OTA support
 AB_OTA_UPDATER := true
 BOARD_BUILD_AB_IMAGE := true
 
+# Recovery
+BOARD_HAS_NO_SELECT_BUTTON := true
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+BOARD_INCLUDE_RECOVERY_DTBO := true
+
 # Assert
 TARGET_OTA_ASSERT_DEVICE := raphael
+
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += \
+    device/xiaomi/raphael
 
